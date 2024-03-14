@@ -1,0 +1,28 @@
+#!/bin/bash
+
+log="/tmp/resize.log"
+
+# only at start
+test "$1" != "start" && exit 0
+
+# true was resized
+if [ ! -f /tmp/resize.log ]
+then
+    exit 0
+fi
+
+PART=$(batocera-part "share_internal")
+DISK=$(batocera-part prefix "${PART}")
+
+# Restore bootloader
+dd if=/boot/u-boot.img of=${DISK} bs=1024 seek=8
+# Fix paritition table
+echo -e "r\nb\nc\nY\nw\nY\n" | gdisk ${DISK}
+# Updating the kernel
+partprobe ${DISK}
+# finally disk sync
+sync
+
+touch /tmp/resize-post.done
+
+exit 0

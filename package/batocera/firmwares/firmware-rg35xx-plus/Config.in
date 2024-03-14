@@ -1,0 +1,4 @@
+config BR2_PACKAGE_FIRMWARE_RG35XX_PLUS
+	bool "firmware-rg35xx-plus"
+	help
+	  RG35XX Plus firmware

@@ -1,0 +1,4 @@
+config BR2_PACKAGE_RG35XX_PLUS_MODULES
+	bool "rg35xx-plus-modules"
+	help
+	  RG35XX Plus kernel modules
