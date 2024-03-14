@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# only at start
+test "$1" != "start" && exit 0
+
+insmod /lib/modules/4.9.170/mali_kbase.ko
+
+# Call the charger process
+/usr/bin/charger
+
+exit 0
