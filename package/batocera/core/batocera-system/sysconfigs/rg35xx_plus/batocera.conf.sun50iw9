@@ -1,0 +1,8 @@
+# RG35XX Plus default values
+
+# default card
+audio.device=alsa_output.platform-soc_03000000_codec_mach.Speakers__hw_audiocodec_0__sink
+audio.profile=Speakers@alsa_card.platform-soc_03000000_codec_mach
+
+# default suspend on handled boards
+system.suspendmode=suspend
