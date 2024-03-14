@@ -1,0 +1,18 @@
+#!/bin/bash
+
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+
+case "$1" in
+  start)
+    mount -t debugfs debugfs /sys/kernel/debug
+    ;;
+  stop)
+    umount /sys/kernel/debug
+    ;;
+  *)
+    echo "Usage: /etc/init.d/S04debugfs {start} {stop}"
+    exit 1
+    ;;
+esac
+
+exit 0
