@@ -1,0 +1,25 @@
+#!/bin/sh
+
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+
+case "$1" in
+  start)
+    # Check if the brightness file exists and is readable
+    if [ -r /userdata/system/.brightness ]; then
+      # Read the brightness level from the file
+      BRIGHTNESS=$(cat /userdata/system/.brightness)
+      # Set the brightness level
+      /usr/bin/brightness set $BRIGHTNESS
+    fi
+    ;;
+  stop)
+    VAL=`/usr/bin/brightness get`
+    echo $VAL > /userdata/system/.brightness
+    ;;
+  *)
+    echo "Usage: /etc/init.d/S27brightness {start} {stop}"
+    exit 1
+    ;;
+esac
+
+exit 0
