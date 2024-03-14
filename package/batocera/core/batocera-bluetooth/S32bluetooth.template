@@ -59,6 +59,10 @@ case "$1" in
                     /usr/bin/hciattach_opi -s 1500000 /dev/ttyBT0 sprd & # specific for certain orangepi boards
                     sleep 2
                 ;;
+                rg35xx_plus)
+                    /usr/bin/rtk_hciattach -n -s 115200 ttyS1 rtk_h5 &
+                    sleep 2 # Give hciattach a few seconds to finish attaching firmware
+                ;;
             esac
         done
 
@@ -103,6 +107,7 @@ case "$1" in
         start-stop-daemon -K -q -p /var/run/bluetoothd.pid
         killall hciattach >/dev/null 2>&1
         killall hciattach_opi >/dev/null 2>&1
+        killall rtk_hciattach >/dev/null 2>&1
         batocera-bluetooth save
     ;;
 
