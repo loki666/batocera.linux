@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# only at start
+test "$1" != "start" && exit 0
+
+echo 0 > /proc/net/rtl8821cs/wlan0/scan_param
+echo 0 > /proc/net/rtl8821cs/wlan1/scan_param
+
+exit 0
