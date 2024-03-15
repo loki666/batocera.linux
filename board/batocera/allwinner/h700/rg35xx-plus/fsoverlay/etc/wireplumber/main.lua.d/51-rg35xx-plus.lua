@@ -8,7 +8,7 @@ rename_hw0_rule = {
       ["device.description"]     = "Built-in Soundcard",
       ["device.nick"]            = "Built-in",
       ["api.alsa.period-size"]   = 2048,
-      ["api.alsa.period-num"]    = 3
+      ["api.alsa.period-num"]    = 2
     },
   }
 
