@@ -1,0 +1,9 @@
+#!/bin/bash
+
+# only at start
+test "$1" != "start" && exit 0
+
+# # Disable the IO scheduler (it just ends up slowing down the MicroSD cards)
+echo noop | tee /sys/class/mmc_host/mmc[0-1]/mmc*/block/*/queue/scheduler > /dev/null
+
+exit 0
