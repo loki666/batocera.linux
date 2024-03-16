@@ -3,6 +3,9 @@
 # default card
 audio.device=alsa_output.platform-soc_03000000_codec_mach.HiFi__hw_audiocodec_0__sink
 
+# powersave governor
+system.cpu.governor=powersave
+
 # default suspend on handled boards
 system.suspendmode=suspend
 
