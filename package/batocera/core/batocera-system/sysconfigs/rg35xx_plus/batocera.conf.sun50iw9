@@ -9,6 +9,9 @@ system.cpu.governor=powersave
 # default suspend on handled boards
 system.suspendmode=suspend
 
+# default power mode
+global.powermode=balanced
+
 # systems default power mode
 dreamcast.powermode=highperformance
 psx.powermode=highperformance
