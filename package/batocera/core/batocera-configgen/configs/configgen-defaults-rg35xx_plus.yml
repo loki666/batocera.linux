@@ -52,6 +52,9 @@ naomi:
 naomi2:
   emulator: flycast
   core:     flycast
+nds:
+  emulator: drastic
+  core:     drastic
 fmtowns:
   emulator: libretro
   core:     mame
