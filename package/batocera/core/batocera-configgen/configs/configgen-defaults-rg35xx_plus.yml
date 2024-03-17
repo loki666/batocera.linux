@@ -58,6 +58,11 @@ fmtowns:
 flash:
   emulator: lightspark
   core:     lightspark
+psx:
+  emulator: libretro
+  core:     swanstation
+  options:
+    gpu_software: true # HW acceleration on swanstation is slow
 scummvm:
   options:
     scumm_scale: 2
