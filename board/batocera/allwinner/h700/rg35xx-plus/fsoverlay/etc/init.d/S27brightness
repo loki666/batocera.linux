@@ -13,8 +13,12 @@ case "$1" in
     fi
     ;;
   stop)
-    VAL=`/usr/bin/brightness get`
-    echo $VAL > /userdata/system/.brightness
+    HDMISTATUS=$(cat /sys/devices/platform/soc/6000000.hdmi/extcon/hdmi/state)
+    if [ "$HDMISTATUS" != "HDMI=1" ]
+    then
+      VAL=`/usr/bin/brightness get`
+      echo $VAL > /userdata/system/.brightness
+    fi
     ;;
   *)
     echo "Usage: /etc/init.d/S27brightness {start} {stop}"
