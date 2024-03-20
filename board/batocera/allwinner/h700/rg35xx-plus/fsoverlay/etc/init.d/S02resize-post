@@ -15,7 +15,7 @@ PART=$(batocera-part "share_internal")
 DISK=$(batocera-part prefix "${PART}")
 
 # Restore bootloader
-dd if=/boot/u-boot.img of=${DISK} bs=1024 seek=8
+dd if=/boot/boot0.img of=${DISK} bs=512 seek=16
 # Fix paritition table
 echo -e "r\nb\nc\nY\nw\nY\n" | gdisk ${DISK}
 # Updating the kernel
