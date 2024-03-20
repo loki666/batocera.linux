@@ -22,6 +22,8 @@ rename_hw2_rule = {
     apply_properties = {
       ["device.description"]     = "HDMI Output",
       ["device.nick"]            = "HDMI",
+      ["api.alsa.period-size"]   = 2048,
+      ["api.alsa.period-num"]    = 2      
     },
   }
   
