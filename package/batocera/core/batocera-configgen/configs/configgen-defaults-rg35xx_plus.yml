@@ -1,8 +1,8 @@
 default:
   options:
     video_threaded: true
+    audio_latency:  128
     retroarch.menu_driver: rgui
-    retroarch.audio_driver: pulse
 
 amiga500:
   emulator: amiberry
