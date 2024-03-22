@@ -1,7 +1,7 @@
 default:
   options:
+    hud_support: false
     video_threaded: true
-    audio_latency:  128
     retroarch.menu_driver: rgui
 
 amiga500:
