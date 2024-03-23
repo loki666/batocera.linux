@@ -16,5 +16,7 @@ global.powermode=balanced
 dreamcast.powermode=highperformance
 psx.powermode=highperformance
 n64.powermode=highperformance
+psp.powermode=highperformance
+saturn.powermode=highperformance
 gb.powermode=powersaver
 gbc.powermode=powersaver
