@@ -103,6 +103,11 @@ else
     RETROARCH_CONF_OPTS += --disable-egl
 endif
 
+ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_RG35XX_PLUS),y)
+    RETROARCH_CONF_OPTS += --enable-mali_fbdev
+    RETROARCH_DEPENDENCIES += libmali
+endif
+
 ifeq ($(BR2_PACKAGE_HAS_LIBOPENVG),y)
     RETROARCH_DEPENDENCIES += libopenvg
 endif
