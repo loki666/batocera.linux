@@ -9,15 +9,14 @@ case "$1" in
       # Read the brightness level from the file
       BRIGHTNESS=$(cat /userdata/system/.brightness)
       # Set the brightness level
-      /usr/bin/brightness set $BRIGHTNESS
+      /usr/bin/rg35xx-plus-toolbox brightness -v "${BRIGHTNESS}"
     fi
     ;;
   stop)
     HDMISTATUS=$(cat /sys/devices/platform/soc/6000000.hdmi/extcon/hdmi/state)
-    if [ "$HDMISTATUS" != "HDMI=1" ]
-    then
-      VAL=`/usr/bin/brightness get`
-      echo $VAL > /userdata/system/.brightness
+    if [ "$HDMISTATUS" != "HDMI=1" ]; then
+      BRIGHTNESS=$(/usr/bin/rg35xx-plus-toolbox brightness)
+      echo $BRIGHTNESS > /userdata/system/.brightness
     fi
     ;;
   *)

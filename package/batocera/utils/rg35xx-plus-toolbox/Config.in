@@ -1,0 +1,2 @@
+config BR2_PACKAGE_RG35XX_PLUS_TOOLBOX
+	bool "rg35xx-plus-toolbox"

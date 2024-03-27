@@ -1,9 +1,7 @@
 #!/bin/sh
 
 CYCLESTEP=20 # % additional brightbess at each step
-
-B="${D}"/brightness
-XMAX=255
+XMAX=100
 
 setValue() {
     NEWVAL=$1
@@ -12,11 +10,11 @@ setValue() {
     test "${NEWVAL}" -lt 0         && NEWVAL=0
     test "${NEWVAL}" -gt "${XMAX}" && NEWVAL="${XMAX}"
 
-    brightness set "${NEWVAL}"
+    /usr/bin/rg35xx-plus-toolbox brightness -v "${NEWVAL}"
 }
 
 cycle() {
-    X=$(cat "${B}")
+    X=$(/usr/bin/rg35xx-plus-toolbox brightness)
     FVALUE=$(echo "scale=3;${X}" "*" "100" / "${XMAX}" | bc)
     LC_ALL=C FVALUE=$(printf '%.*f\n' 0 "${FVALUE}") # round
     NEWVAL=$(echo "${FVALUE} + ${CYCLESTEP}" | bc)
@@ -30,7 +28,7 @@ cycle() {
 # get
 if test $# = 0
 then
-    X=$(brightness get)
+    X=$(/usr/bin/rg35xx-plus-toolbox brightness)
     FVALUE=$(echo "scale=3;${X}" "*" "100" / "${XMAX}" | bc)
     LC_ALL=C printf '%.*f\n' 0 "${FVALUE}" # round
     exit 0
@@ -43,8 +41,7 @@ then
        cycle
     else
        NEWVAL=$(expr "${1}" "*" "${XMAX}" / 100)
-#       setValue "${NEWVAL}" "${XMAX}"
-	brightness set "${NEWVAL}"
+       setValue "${NEWVAL}" "${XMAX}"
        exit 0
     fi
 fi
@@ -52,7 +49,7 @@ fi
 # set +
 if test $# = 2
 then
-    X=$(brightness get)
+    X=$(/usr/bin/rg35xx-plus-toolbox brightness)
     DELTA=$(expr "${2}" '*' ${XMAX} / 100)
     NEWVAL=$(expr "${X}" "${1}" "${DELTA}")
     setValue "${NEWVAL}" "${XMAX}"
