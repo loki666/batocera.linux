@@ -10,7 +10,7 @@ setValue() {
     test "${NEWVAL}" -lt 0         && NEWVAL=0
     test "${NEWVAL}" -gt "${XMAX}" && NEWVAL="${XMAX}"
 
-    /usr/bin/rg35xx-plus-toolbox brightness -v "${NEWVAL}"
+    /usr/bin/rg35xx-plus-toolbox brightness -p "${NEWVAL}"
 }
 
 cycle() {

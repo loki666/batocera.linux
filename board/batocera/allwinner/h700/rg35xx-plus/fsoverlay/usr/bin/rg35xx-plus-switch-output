@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# force no hdmi if it is unplugged
+HDMISTATUS=$(cat /sys/devices/platform/soc/6000000.hdmi/extcon/hdmi/state)
+
+if test "${HDMISTATUS}" = "HDMI=1"
+then
+    rg35xx-plus-toolbox display -o hdmi
+    fbset -g 1280 720 1280 1440 32 -t 13426 192 56 22 1 136 3
+
+    # Force audio to HDMI
+    batocera-audio set alsa_output.platform-soc_03000000_ahub1_mach.stereo-fallback
+
+    curl http://localhost:1234/quit
+else
+    rg35xx-plus-toolbox display -o lcd
+    fbset -g 640 480 640 960 32 -t 41666 26 84 11 25 20 4
+
+    # Force audio to internal
+    batocera-audio set alsa_output.platform-soc_03000000_codec_mach.HiFi__hw_audiocodec_0__sink
+
+    curl http://localhost:1234/quit
+fi

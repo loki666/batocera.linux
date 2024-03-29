@@ -1,4 +1,4 @@
-RG35XX_PLUS_TOOLBOX_VERSION = 3b9e0b19d4dc1c6f8e6cd49a6dab8e49c20cef4f # git hash
+RG35XX_PLUS_TOOLBOX_VERSION = 08359c7e00bedd7f60c33009a904a39a7cf8577f # git hash
 RG35XX_PLUS_TOOLBOX_SITE = $(call github,loki666,rg35xx-plus-toolbox,$(RG35XX_PLUS_TOOLBOX_VERSION))
 
 # Install steps

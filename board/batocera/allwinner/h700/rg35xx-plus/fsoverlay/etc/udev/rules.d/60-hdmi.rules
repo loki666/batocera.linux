@@ -1,1 +1,1 @@
-SUBSYSTEM=="extcon", ACTION=="add|change", ENV{DEVPATH}=="/devices/platform/soc/6000000.hdmi/extcon/hdmi", RUN+="/usr/bin/batocera-resolution-post setOutput auto"
+SUBSYSTEM=="extcon", ACTION=="add|change", ENV{DEVPATH}=="/devices/platform/soc/6000000.hdmi/extcon/hdmi", RUN+="/usr/bin/rg35xx-plus-switch-output"

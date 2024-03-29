@@ -1,11 +1,15 @@
 #!/bin/bash
 
+EVENT=$1
+SYSTEM_NAME=$2
+
+test "$EVENT" = "gameStart" || test "$EVENT" = "gameStop" || exit 0
+
 GPU_CTRL="/sys/kernel/debug/sunxi_gpu/write"
 
 if ! [ -e /sys/kernel/debug/sunxi_gpu/write ]; then
 	exit 0
 fi
-
 
 set_gpu_settings() {
 	local FREQUENCY=$1
@@ -29,17 +33,8 @@ handle_powermode() {
 				set_gpu_settings "420" "900"
 				;;
 			*)
-		esac				
+		esac
 }
-
-# Check for events
-EVENT=$1
-SYSTEM_NAME=$2
-
-# Exit if the event is neither gameStart nor gameStop
-if [ "$EVENT" != "gameStart" ] && [ "$EVENT" != "gameStop" ]; then
-    exit 0
-fi
 
 # Handle gameStop event
 if [ "$EVENT" = "gameStop" ]; then
