@@ -89,21 +89,9 @@ define BATOCERA_AUDIO_STEAM_DECK_OLED
 	    $(TARGET_DIR)/usr/share/alsa/ucm2/
 endef
 
-# RG35XX Plus ucm config
-define BATOCERA_AUDIO_RG35XX_PLUS
-	# extra ucm files
-	mkdir -p $(TARGET_DIR)/usr/share/alsa/ucm2
-	cp -pr $(BR2_EXTERNAL_BATOCERA_PATH)/package/batocera/core/batocera-audio/ucm2/* \
-	    $(TARGET_DIR)/usr/share/alsa/ucm2/
-endef
-
 ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_X86_ANY),y)
     BATOCERA_AUDIO_POST_INSTALL_TARGET_HOOKS += BATOCERA_AUDIO_X86_INTEL_DSP
     BATOCERA_AUDIO_POST_INSTALL_TARGET_HOOKS += BATOCERA_AUDIO_STEAM_DECK_OLED
-endif
-
-ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_RG35XX_PLUS),y)
-    BATOCERA_AUDIO_POST_INSTALL_TARGET_HOOKS += BATOCERA_AUDIO_RG35XX_PLUS
 endif
 
 $(eval $(generic-package))
