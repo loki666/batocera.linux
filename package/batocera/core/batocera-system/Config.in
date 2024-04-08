@@ -1006,8 +1006,11 @@ config BR2_PACKAGE_BATOCERA_PORTS_SYSTEMS
     # Sonic Mania
     select BR2_PACKAGE_SONIC_MANIA          if BR2_x86_64 || BR2_PACKAGE_BATOCERA_XWAYLAND
 
-    help
-        Ports
+	# Ur-Quan Masters
+	select BR2_PACKAGE_UQM					# ALL
+
+	help
+	  Ports
 
 #### Vintage computer systems ####
 config BR2_PACKAGE_BATOCERA_COMPUTER_SYSTEMS
