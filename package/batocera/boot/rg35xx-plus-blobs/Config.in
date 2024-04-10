@@ -1,4 +1,0 @@
-config BR2_PACKAGE_RG35XX_PLUS_BLOBS
-	bool "rg35xx-plus-blobs"
-	help
-	  RG35XX Plus boot blobs

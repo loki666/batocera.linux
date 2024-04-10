@@ -37,10 +37,6 @@ else
   LIBRETRO_SWANSTATION_CONF_OPTS += -DUSE_EGL=OFF
 endif
 
-ifeq ($(BR2_PACKAGE_BATOCERA_TARGET_RG35XX_PLUS),y)
-  LIBRETRO_SWANSTATION_CONF_OPTS += -DCMAKE_SYSTEM_PROCESSOR=armv7-a
-endif
-
 define LIBRETRO_SWANSTATION_INSTALL_TARGET_CMDS
     $(INSTALL) -D $(@D)/buildroot-build/swanstation_libretro.so \
 	    $(TARGET_DIR)/usr/lib/libretro/swanstation_libretro.so

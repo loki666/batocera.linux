@@ -17,7 +17,8 @@ BATOCERA_BINARIES_DIR=$6
 mkdir -p "${BATOCERA_BINARIES_DIR}/boot/boot"     || exit 1
 
 cp "${BINARIES_DIR}/rootfs.squashfs"        "${BATOCERA_BINARIES_DIR}/boot/boot/batocera.update" || exit 1
+cp "${BOARD_DIR}/partitions/boot0.img"      "${BATOCERA_BINARIES_DIR}/boot/boot0.img"            || exit 1
 cp "${BOARD_DIR}/bootlogo.bmp"              "${BATOCERA_BINARIES_DIR}/boot/bootlogo.bmp"         || exit 1
-cp "${BINARIES_DIR}/boot0.img"              "${BATOCERA_BINARIES_DIR}/boot/boot0.img"            || exit 1
+cp -r "${BOARD_DIR}/partitions"             "${BINARIES_DIR}"                                    || exit 1
 
 exit 0
