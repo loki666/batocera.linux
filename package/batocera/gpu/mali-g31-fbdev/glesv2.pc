@@ -9,4 +9,3 @@ Version: 2.0
 Requires:
 Libs: -L${libdir} -lGLESv2 -lGLESv1_CM
 Cflags: -I${includedir}
-
