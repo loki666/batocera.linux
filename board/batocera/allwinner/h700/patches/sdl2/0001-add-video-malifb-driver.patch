@@ -557,7 +557,7 @@ diff -urN sdl2-2.0.22/src/video/mali-fbdev/SDL_malivideo.c build/sdl2-2.0.22/src
 diff -urN sdl2-2.0.22/src/video/mali-fbdev/SDL_malivideo.h build/sdl2-2.0.22/src/video/mali-fbdev/SDL_malivideo.h
 --- a/src/video/mali-fbdev/SDL_malivideo.h	1970-01-01 00:00:00.000000000 +0000
 +++ b/src/video/mali-fbdev/SDL_malivideo.h	2022-09-12 15:58:19.342361438 +0000
-@@ -0,0 +1,80 @@
+@@ -0,0 +1,79 @@
 +/*
 +  Simple DirectMedia Layer
 +  Copyright (C) 1997-2014 Sam Lantinga <slouken@libsdl.org>
@@ -593,7 +593,6 @@ diff -urN sdl2-2.0.22/src/video/mali-fbdev/SDL_malivideo.h build/sdl2-2.0.22/src
 +#include <sys/types.h>
 +#include <sys/stat.h>
 +#include <fcntl.h>
-+
 +#include <unistd.h>
 +#include <stdlib.h>
 +
@@ -641,15 +640,15 @@ diff -urN sdl2-2.0.22/src/video/mali-fbdev/SDL_malivideo.h build/sdl2-2.0.22/src
 diff -urN sdl2-2.0.22/src/video/SDL_egl.c build/sdl2-2.0.22/src/video/SDL_egl.c
 --- a/src/video/SDL_egl.c	2022-09-13 19:22:27.575790497 +0000
 +++ b/src/video/SDL_egl.c	2022-09-12 15:58:19.342361438 +0000
-@@ -59,7 +59,7 @@
- #define DEFAULT_OGL_ES_PVR ( vc4 ? "libGLES_CM.so.1" : "libbrcmGLESv2.so" )
- #define DEFAULT_OGL_ES ( vc4 ? "libGLESv1_CM.so.1" : "libbrcmGLESv2.so" )
+@@ -66,7 +66,7 @@
+ #define DEFAULT_OGL_ES_PVR (vc4 ? "libGLES_CM.so.1" : "libbrcmGLESv2.so")
+ #define DEFAULT_OGL_ES     (vc4 ? "libGLESv1_CM.so.1" : "libbrcmGLESv2.so")
  
 -#elif SDL_VIDEO_DRIVER_ANDROID || SDL_VIDEO_DRIVER_VIVANTE
-+#elif SDL_VIDEO_DRIVER_ANDROID || SDL_VIDEO_DRIVER_VIVANTE || SDL_VIDEO_DRIVER_MALI
++#elif SDL_VIDEO_DRIVER_ANDROID || SDL_VIDEO_DRIVER_VIVANTE || defined(SDL_VIDEO_DRIVER_MALI)
  /* Android */
- #define DEFAULT_EGL "libEGL.so"
- #define DEFAULT_OGL_ES2 "libGLESv2.so"
+ #define DEFAULT_EGL        "libEGL.so"
+ #define DEFAULT_OGL_ES2    "libGLESv2.so"
 diff -urN sdl2-2.0.22/src/video/SDL_sysvideo.h build/sdl2-2.0.22/src/video/SDL_sysvideo.h
 --- a/src/video/SDL_sysvideo.h	2022-04-09 01:19:19.000000000 +0000
 +++ b/src/video/SDL_sysvideo.h	2022-09-12 15:58:19.342361438 +0000
@@ -664,13 +663,14 @@ diff -urN sdl2-2.0.22/src/video/SDL_sysvideo.h build/sdl2-2.0.22/src/video/SDL_s
 diff -urN sdl2-2.0.22/src/video/SDL_video.c build/sdl2-2.0.22/src/video/SDL_video.c
 --- a/src/video/SDL_video.c	2022-04-21 17:37:37.000000000 +0000
 +++ b/src/video/SDL_video.c	2022-09-12 15:58:19.342361438 +0000
-@@ -70,6 +70,9 @@
+@@ -77,6 +77,9 @@
  #if SDL_VIDEO_DRIVER_VIVANTE
      &VIVANTE_bootstrap,
  #endif
-+#if SDL_VIDEO_DRIVER_MALI
++#ifdef SDL_VIDEO_DRIVER_MALI
 +    &MALI_bootstrap,
 +#endif 
  #if SDL_VIDEO_DRIVER_DIRECTFB
      &DirectFB_bootstrap,
  #endif
+ 

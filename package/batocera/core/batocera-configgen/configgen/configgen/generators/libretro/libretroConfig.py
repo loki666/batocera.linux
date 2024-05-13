@@ -550,6 +550,36 @@ def createLibretroConfig(generator, system, controllers, metadata, guns, wheels,
             if (pad.guid in valid_n64_controller_guids and pad.configName in valid_n64_controller_names) or (system.isOptSet(f'{option}-controller{i}') and system.config[f'{option}-controller{i}'] != 'retropad'):
                 update_n64_controller_config(i)
                       
+    ## TATE mode remap for handhelds                    
+    hhtate_mapping = {
+        ('19000000010000000100000000010000', 'Deeplay-keys'): {  # rg35xx/h
+            'rotation': 'left', 
+            'remap': {
+                'stk_r_x+': '18', 'stk_r_x-': '19', 'stk_r_y+': '17', 'stk_r_y-': '16',
+                'btn_a': '0', 'btn_b': '1', 'btn_x': '8', 'btn_y': '-1',
+            }
+        },
+    }
+
+    def update_handheld_config(guid, name):
+        if (guid, name) in hhtate_mapping:
+            # set display rotation
+            if (system.config['core'] == 'fbneo'):
+                coreSettings.save('fbneo-vertical-mode', '"' + 'TATE alternate' + '"')
+            elif (system.config['core'] == 'mame'):
+                coreSettings.save('mame_rotation_mode', '"' + 'tate-rol' + '"')
+            elif (system.config['core'] == 'mame078plus'):
+                coreSettings.save('mame2003-plus_tate_mode', '"' + 'enabled' + '"')
+
+            settings = hhtate_mapping[(guid, name)]
+            # remap inputs
+            for btn, value in settings['remap'].items():
+                retroarchConfig[f'input_player1_{btn}'] = value    
+
+    controller, pad = sorted(controllers.items())[0] 
+    if (system.isOptSet('hhtate') and system.getOptBoolean('hhtate')):
+        update_handheld_config(pad.guid, pad.configName)
+
     ## PORTS
     ## Quake
     if (system.config['core'] == 'tyrquake'):

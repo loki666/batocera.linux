@@ -235,6 +235,12 @@ shared:
       choices:
         "On":  1
         "Off": 0
+    hhtate:
+        prompt: HANDHELD TATE MODE
+        description: Rotates the display and remaps inputs for device to be used sideways.
+        choices:
+            "Off":    0
+            "On":     1
     use_wheels:
       group: WHEELS
       prompt: USE WHEELS
@@ -1578,7 +1584,7 @@ libretro:
     #easyrpg:
     fbneo:
       features: [netplay, cheevos]
-      shared: [rewind, autosave, use_guns, use_wheels, wheel_rotation, wheel_deadzone, wheel_midzone]
+      shared: [rewind, autosave, hhtate, use_guns, use_wheels, wheel_rotation, wheel_deadzone, wheel_midzone]
       cfeatures:
             fbneo-cpu-speed-adjust:
                 group: ADVANCED OPTIONS
@@ -2486,7 +2492,7 @@ libretro:
                     "Off (Default)": 0
     mame:
       features: [netplay, padtokeyboard]
-      shared: [autosave]
+      shared: [autosave, hhtate]
       cfeatures:
             mame_cpu_overclock:
                 group: ADVANCED OPTIONS
@@ -3686,7 +3692,7 @@ libretro:
 
     mame078plus:
       features: [netplay]
-      shared: [rewind, autosave, use_guns]
+      shared: [rewind, autosave, hhtate, use_guns]
       cfeatures:
             mame2003-plus_analog:
                 prompt:      CONTROL MAPPING
